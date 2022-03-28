@@ -2,7 +2,7 @@ body, html {
     height: 100%;
     margin: 0;
     background-color: white;
-    font-size: 18px;
+    font-size: 20px;
 }
 .hoved {    /*Diverse bakgrunner og tekstfelt*/
     background-color: #49F273;
@@ -11,12 +11,50 @@ body, html {
     border-style: double;
     border-width: 4px;
 }
+
+#cookies{
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .textbox {
-    background-color: #F24BC6;
+    display: flex;
+    background-color: #BDF24B;
     margin: 12px;
     padding: 13px;
     border-style: double;
     border-width: 4px;
+}
+
+.example{
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    border-style: solid;
+    width: 800px;
+    height: 400px;
+
+}
+
+#navn {
+    color: white;
+    background-color: black;
+
+    padding: 6px;
+}
+
+#foto {
+    border-style: solid;
+    border-color: black;
+    width: 100%;
+    height: auto;
+
+
+
 }
 
 .banner {       /*header og tittel*/

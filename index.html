@@ -11,6 +11,13 @@
         <h1>The Art Plateau</h1>
     </div>
 </div>
+
+<div id="cookies" style="background-color: white">
+    <h1><br><br>Denne nettsiden bruker cookies.</h1>
+    <p>Ved å trykke på "Aksepter" forstår du at denne nettsiden lagrer personlig data for en bedre brukeropplevelse.</p>
+    <button id="cookieAksepter">Aksepter</button>
+</div>
+
 <ul class="navigering">    <!--navigering meny for alle sider-->
     <li class="meny"><a class="active" href="index.html">Home</a></li>
     <li class="meny"><a href="politikere.html">Galleri</a></li>
@@ -31,13 +38,35 @@
         <b>Sjekkliste</b> fanen er for å vise alt jeg har fått unnagjort før fristen 14. mai. Helt på slutten er det en ganske lang forklaring på hva som skjer angående IT nå som Russland invaderer Ukraina, og hva det har med oss å gjøre. Fanen heter <b>Ukraina Krigen</b></p>
 </div>
 <div class="textbox">
-    <h2>Galleriet</h2>
-    <p>I galleriet kan du se hva folk rundt hele verden laster opp! Du har selv tilgang til å laste opp dine egne
-        bilder. Å laste opp et bilde er enkelt og raskt, og du kan sette på tags og bruke katagorier slik at alle kan
-        finne frem ditt bilde.</p>
+    <div>    <h2>Galleriet</h2>
+        <p>I galleriet kan du se hva folk rundt hele verden laster opp! Du har selv tilgang til å laste opp dine egne
+            bilder. Å laste opp et bilde er enkelt og raskt, og du kan sette på tags og bruke katagorier slik at alle kan
+            finne frem ditt bilde.</p>
+    </div>
     <div class="example">
-        
+        <div id="navn"><h4>Av: Max Oliver</h4></div>
+        <div id="foto">kk</div>
     </div>
 </div>
 </body>
+<script>
+
+    let cookieEl = document.querySelector("#cookies")
+    let cookieButtonEl = document.querySelector("#cookieAksepter");
+
+    cookieButtonEl.addEventListener("click", cookie)
+
+    if (localStorage.cookies) {
+        cookieEl.innerHTML = "";
+        document.getElementById('cookies').style.backgroundColor = "";
+    }
+    else {
+    }
+
+    function cookie() {
+        localStorage.cookies = 1;
+        location.reload()
+    }
+
+</script>
 </html>
