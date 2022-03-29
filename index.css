@@ -40,10 +40,21 @@ body, html {
 
 }
 
+#cookieAksepter {
+    font-size: 18px;
+    width: 200px;
+    height: 40px;
+    background-color: #49F273;
+    border-radius: 45px;
+    cursor: pointer;
+}
+#cookieAksepter:hover:not(.active) {
+    background-color: green;
+}
+
 #navn {
     color: white;
     background-color: black;
-
     padding: 6px;
 }
 
@@ -52,9 +63,6 @@ body, html {
     border-color: black;
     width: 100%;
     height: auto;
-
-
-
 }
 
 .banner {       /*header og tittel*/

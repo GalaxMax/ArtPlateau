@@ -59,6 +59,7 @@
     if (localStorage.cookies) {
         cookieEl.innerHTML = "";
         document.getElementById('cookies').style.backgroundColor = "";
+        localStorage.removeItem('cookies')
     }
     else {
     }
