@@ -150,7 +150,7 @@ body, html {
 }
 
 .banner {       /*header og tittel*/
-    background-image: url("artsy.jpg");
+    background-image: url("bilder/artsy.jpg");
     height: 25%;
     background-position: center;
     background-repeat: no-repeat;
