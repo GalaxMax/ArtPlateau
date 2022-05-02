@@ -44,20 +44,82 @@ body, html {
     background-color: green;
 }
 
-.example{
+.post {
+    font-family: Arial, sans-serif;
+    background-color: #F24BC6;
+    top: 70px;
+    left: 0;
+    position: relative;
+    width: 350px;
+    height: 430px;
+    padding: 12px;
+    border: black solid;
+    border-radius: 0 30px 30px 0 ;
+    z-index: 2;
+}
+.kategoriMeny {
+    width: 200px;
+    height: 30px;
+}
+.kategoriMenyValg{
+    text-align: center;
+}
+.lastOpp {
+    position: relative;
+    border-radius: 15px;
+    background-color: white;
+    border: none;
+    padding: 9px 16px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    float: right;
+    bottom: 35px;
+
+}
+.lastOpp:hover{
+    background-color: #46B3EA;
+}
+
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    display: block;
+    margin-top: 2px;
+    margin-bottom: 10px;}
+
+.innleggFelt {
+    display: flex;
+    flex-wrap: wrap;
+}
+.innlegg {
     display: flex;
     flex-direction: column;
     border-color: black;
     border-style: solid;
     border-radius: 20px;
-    width: 800px;
+    width: auto;
+    max-width: 550px;
+    height: auto;
+    font-family: Helvetica;
+    background-color: aquamarine;
+    margin: 35px;
+}
+
+.example{
+    border-color: black;
+    border-style: solid;
+    border-radius: 20px;
+    width: auto;
     height: auto;
     font-family: Helvetica;
     background-color: aquamarine;
 }
 
 .navn {
-    padding: 3px;
+    padding: 20px;
     border-bottom: solid black 3px;
     text-align: center;
     font-family: cursive;
@@ -68,13 +130,14 @@ body, html {
     height: auto;
 }
 
-#innlegg {
+.bilde {
     height: auto;
     max-height: 300px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: auto;
+    max-width: 550px;
 }
 
 .kategori {

@@ -19,19 +19,157 @@
 </div>
 
 <ul class="navigering">    <!--navigering meny for alle sider-->
-    <li class="meny"><a class="active" href="index.html">Home</a></li>
-    <li class="meny"><a href="politikere.html">Galleri</a></li>
+    <li class="meny"><a href="index.html">Home</a></li>
+    <li class="meny"><a class="active" href="gallery.html">Galleri</a></li>
     <li class="meny"><a href="registrer.html">Plan</a></li>
     <li class="meny"><a href="sjekkliste.html">Design</a></li>
     <li class="meny"><a href="vurdering.html">Algoritmer</a></li>
     <li class="meny"><a href="webserver.html">Webserver</a></li>
-    <li class="meny"><a href="vurdering.html">Cookies</a></li>
+    <li class="meny"><a href="webserver.html">Cookies</a></li>
     <li class="meny"><a href="logo.html">Webutvikling</a></li>
     <li class="meny"><a href="vurdering.html">Sjekkliste</a></li>
     <li class="meny"><a href="vurdering.html">Ukraina Krigen</a></li>
 </ul>
-<script>
 
+
+<div id="innleggSamling" class="innleggFelt">
+    <div class="post">
+        <p><b>Her kan du legge til dine egne bilder!</b></p>
+        <label for="brukerNavn">Brukernavn</label>
+        <input type="text" id="brukerNavn">
+
+        <label for="beskrivelse">Beskrivelse</label>
+        <textarea id="beskrivelse" rows="4" cols="40"></textarea>
+
+        <label for="velgKategori">Velg en kategori</label>
+        <select class="kategoriMeny" id="velgKategori">
+            <option class="kategoriMenyValg">Dyr</option>
+            <option class="kategoriMenyValg">By</option>
+            <option class="kategoriMenyValg">Sport</option>
+            <option class="kategoriMenyValg">Mat</option>
+            <option class="kategoriMenyValg">Natur</option>
+        </select>
+
+        <label for="tags">Legg til en Tag</label>
+        <input type="text" id="tags">
+
+        <label for="imgURL">Bilde URL</label>
+        <input type="text" id="imgURL">
+
+        <button class="lastOpp" id="lagre">Legg ut bilde</button>
+    </div>
+
+    <div class="innlegg">
+    <div class="navn"><p>Av: Max Oliver</p></div>
+    <div class="foto"><img class="bilde" src="../bilder/skisser.jpg" alt="Tidlig planer på hvordan forsiden skulle se ut."></div>
+    <div class="kategori skole">
+        <p><b>Skole</b></p>
+    </div>
+    <div class="beskrivelseOgTags">
+        <div class="tags">Skolearbeid</div>
+        <div class="tags">Plan</div>
+        <div class="tags">IT</div>
+        <p>Dette er et eksempel innlegg. Du kan lage tags og legge til kategorier. Bildet brukt er en skisse for
+            forsiden før kodingen begynte.</p>
+    </div>
+    </div>
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDpLtSVKfz3rcmcqX3-y9Gg-zIcHc0P8Ng",
+        authDomain: "the-art-plateau.firebaseapp.com",
+        projectId: "the-art-plateau",
+        storageBucket: "the-art-plateau.appspot.com",
+        messagingSenderId: "684643482427",
+        appId: "1:684643482427:web:715b478b5ae4a170e1d51e"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    let db = firebase.firestore();
+
+    let brukerNavnEl = document.querySelector("#brukerNavn");
+    let beskrivelseEl = document.querySelector("#beskrivelse");
+    let velgKategoriEl = document.querySelector("#velgKategori");
+    let tagsEl = document.querySelector("#tags");
+    let imgURLEl = document.querySelector("#imgURL");
+    let buttonEl = document.querySelector("#lagre");
+
+    let d = new Date();
+    let dagEl = d.getDate();
+    let maanedEl = d.getMonth();
+    let aarEl = d.getFullYear();
+
+    function lastOppBilde() {   //legger til et nytt dokument i db med bruker input//
+        db.collection("galleri").add({
+            navn: brukerNavnEl.value,
+            beskrivelse: beskrivelseEl.value,
+            kategori: velgKategoriEl.value,
+            tags: tagsEl.value,
+            imgURL: imgURLEl.value,
+            dag: dagEl,
+            maaned: maanedEl,
+            aar: aarEl
+        });
+    }
+
+    buttonEl.addEventListener("click", lastOppBilde) //knapp for å utføre funksjon//
+
+
+    function innleggListeElement(dokument) {       //viser data//
+
+        let innleggSamlingEl = document.querySelector('#innleggSamling');
+        let innleggEl = document.createElement("div");    //lager elementer//
+        let navnEl = document.createElement("div");
+        let fotoEl = document.createElement("div")
+        let imgEl = document.createElement("img")
+        let kategoriEl = document.createElement("div")
+        let beskrivelseOgTagsEl = document.createElement("div")
+        let tagsEl = document.createElement("div")
+        let beskrivelseEl = document.createElement('p')
+
+        navnEl.innerHTML = "Av: " + dokument.data().navn
+        kategoriEl.innerHTML = dokument.data().kategori
+        tagsEl.innerHTML = dokument.data().tags
+        beskrivelseEl.innerHTML = dokument.data().beskrivelse
+        srcEl = dokument.data().imgURL
+
+        innleggEl.classList.add('innlegg');
+        navnEl.classList.add('navn');
+        fotoEl.classList.add('foto');
+        imgEl.classList.add('bilde');
+        kategoriEl.classList.add('kategori');
+        kategoriEl.classList.add('skole');
+        beskrivelseOgTagsEl.classList.add('beskrivelseOgTags');
+        tagsEl.classList.add('tags');
+
+        imgEl.src = srcEl
+
+        fotoEl.appendChild(imgEl)
+        beskrivelseOgTagsEl.appendChild(tagsEl);
+        beskrivelseOgTagsEl.appendChild(beskrivelseEl);
+        innleggEl.appendChild(navnEl);
+        innleggEl.appendChild(fotoEl);
+        innleggEl.appendChild(kategoriEl);
+        innleggEl.appendChild(beskrivelseOgTagsEl);
+
+        innleggSamlingEl.appendChild(innleggEl);
+    }
+
+    db.collection("galleri").get().then((snapshot) => {   //henter dokumenter//
+        let dokumenter = snapshot.docs;
+
+        for (let i = 0; i < dokumenter.length; i++) {   //gjør vært dokument til tabell rad//
+            innleggListeElement(dokumenter[i]);
+        }
+    });
+</script>
+<script>
     let cookieEl = document.querySelector("#cookies")
     let cookieButtonEl = document.querySelector("#cookieAksepter");
 
@@ -48,7 +186,6 @@
         localStorage.cookies = 1;
         location.reload()
     }
-
 </script>
 </body>
 </html>
