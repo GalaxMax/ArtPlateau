@@ -31,8 +31,8 @@
     <li class="meny"><a href="vurdering.html">Ukraina Krigen</a></li>
 </ul>
 
-
-<div id="innleggSamling" class="innleggFelt">
+<div class="galleriPlass">
+<div class="panels">
     <div class="post">
         <p><b>Her kan du legge til dine egne bilder!</b></p>
         <label for="brukerNavn">Brukernavn</label>
@@ -48,6 +48,7 @@
             <option class="kategoriMenyValg">Sport</option>
             <option class="kategoriMenyValg">Mat</option>
             <option class="kategoriMenyValg">Natur</option>
+            <option class="kategoriMenyValg">Tech</option>
         </select>
 
         <label for="tags">Legg til en Tag</label>
@@ -59,20 +60,11 @@
         <button class="lastOpp" id="lagre">Legg ut bilde</button>
     </div>
 
-    <div class="innlegg">
-    <div class="navn"><p>Av: Max Oliver</p></div>
-    <div class="foto"><img class="bilde" src="../bilder/skisser.jpg" alt="Tidlig planer på hvordan forsiden skulle se ut."></div>
-    <div class="kategori skole">
-        <p><b>Skole</b></p>
+    <div class="sort">
     </div>
-    <div class="beskrivelseOgTags">
-        <div class="tags">Skolearbeid</div>
-        <div class="tags">Plan</div>
-        <div class="tags">IT</div>
-        <p>Dette er et eksempel innlegg. Du kan lage tags og legge til kategorier. Bildet brukt er en skisse for
-            forsiden før kodingen begynte.</p>
-    </div>
-    </div>
+</div>
+
+<div id="innleggSamling" class="innleggFelt"></div>
 </div>
 
 
@@ -144,7 +136,6 @@
         fotoEl.classList.add('foto');
         imgEl.classList.add('bilde');
         kategoriEl.classList.add('kategori');
-        kategoriEl.classList.add('skole');
         beskrivelseOgTagsEl.classList.add('beskrivelseOgTags');
         tagsEl.classList.add('tags');
 

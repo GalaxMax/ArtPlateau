@@ -44,6 +44,10 @@ body, html {
     background-color: green;
 }
 
+.panels{
+    width: 400px;
+}
+
 .post {
     font-family: Arial, sans-serif;
     background-color: #F24BC6;
@@ -54,8 +58,24 @@ body, html {
     height: 430px;
     padding: 12px;
     border: black solid;
-    border-radius: 0 30px 30px 0 ;
+    border-radius: 0 30px 0 0 ;
     z-index: 2;
+}
+.sort {
+    font-family: Arial, sans-serif;
+    background-color: #F2784B;
+    top: 70px;
+    left: 0;
+    position: relative;
+    width: 350px;
+    height: 430px;
+    padding: 12px;
+    border: black solid;
+    border-radius: 0 0 30px 0 ;
+    z-index: 2;
+}
+.galleriPlass{
+    display: flex;
 }
 .kategoriMeny {
     width: 200px;
@@ -132,7 +152,7 @@ select {
 
 .bilde {
     height: auto;
-    max-height: 300px;
+    max-height: 400px;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -143,21 +163,27 @@ select {
 .kategori {
     display: block;
     width: 100%;
+    height: 40px;
     text-align: center;
+    font-size: 30px;
     border-bottom: solid black 3px;
     border-top: solid black 3px;
-}
-
-.natur{
-    background-color: darkgreen;
-}
-.skole {
     background-color: yellow;
 }
 
 .beskrivelseOgTags {
     border: black;
     padding: 15px;
+}
+
+.kategoriEksempel {
+    display: block;
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    border-bottom: solid black 3px;
+    border-top: solid black 3px;
+    background-color: yellow;
 }
 
 .tags {
