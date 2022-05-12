@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>The Art Plateau</title>
-    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
 <div class="banner">    <!--header for alle nettsider-->
@@ -21,13 +21,13 @@
 <ul class="navigering">    <!--navigering meny for alle sider-->
     <li class="meny"><a href="index.html">Home</a></li>
     <li class="meny"><a class="active" href="gallery.html">Galleri</a></li>
-    <li class="meny"><a href="registrer.html">Plan</a></li>
-    <li class="meny"><a href="sjekkliste.html">Design</a></li>
-    <li class="meny"><a href="vurdering.html">Algoritmer</a></li>
+    <li class="meny"><a href="planDesign.html">Plan</a></li>
+    <li class="meny"><a href="planDesign.html">Design</a></li>
+    <li class="meny"><a href="planDesign.html">Algoritmer</a></li>
+    <li class="meny"><a href="planDesign.html">Sjekkliste</a></li>
     <li class="meny"><a href="webserver.html">Webserver</a></li>
     <li class="meny"><a href="webserver.html">Cookies</a></li>
-    <li class="meny"><a href="logo.html">Webutvikling</a></li>
-    <li class="meny"><a href="vurdering.html">Sjekkliste</a></li>
+    <li class="meny"><a href="webserver.html">Webutvikling</a></li>
     <li class="meny"><a href="vurdering.html">Ukraina Krigen</a></li>
 </ul>
 
@@ -61,12 +61,22 @@
     </div>
 
     <div class="sort">
+        <label for="sorterKategori">Sorter etter kategori</label>
+        <select class="kategoriMeny" id="sorterKategori">
+            <option class="kategoriMenyValg">Alle</option>
+            <option class="kategoriMenyValg">Dyr</option>
+            <option class="kategoriMenyValg">By</option>
+            <option class="kategoriMenyValg">Sport</option>
+            <option class="kategoriMenyValg">Mat</option>
+            <option class="kategoriMenyValg">Natur</option>
+            <option class="kategoriMenyValg">Tech</option>
+        </select>
+        <button class="lastOpp" id="sorter">Sorter Innlegg</button>
     </div>
 </div>
 
 <div id="innleggSamling" class="innleggFelt"></div>
 </div>
-
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -91,6 +101,9 @@
     let tagsEl = document.querySelector("#tags");
     let imgURLEl = document.querySelector("#imgURL");
     let buttonEl = document.querySelector("#lagre");
+    let sorterKnappEl = document.querySelector("#sorter");
+    let sorterkategoriEl = document.querySelector("#sorterKategori");
+    let innleggSamlingEl = document.querySelector('#innleggSamling');
 
     let d = new Date();
     let dagEl = d.getDate();
@@ -111,11 +124,12 @@
     }
 
     buttonEl.addEventListener("click", lastOppBilde) //knapp for å utføre funksjon//
+    sorterKnappEl.addEventListener("click", slett)
+    sorterKnappEl.addEventListener("click", sorterValgtKategori)
 
 
     function innleggListeElement(dokument) {       //viser data//
 
-        let innleggSamlingEl = document.querySelector('#innleggSamling');
         let innleggEl = document.createElement("div");    //lager elementer//
         let navnEl = document.createElement("div");
         let fotoEl = document.createElement("div")
@@ -159,6 +173,122 @@
             innleggListeElement(dokumenter[i]);
         }
     });
+
+    db.collection("galleri").onSnapshot(snapshot => {
+        db.collection("galleri").orderBy("navn").get().then((snapshot) => {
+            // Henter ut dokumentene
+            let dokumenter = snapshot.docs;
+
+            // Tømmer listeelementet (<div>-elementet der huskelisten lages)
+            innleggSamlingEl.innerHTML = "";
+
+            // Går gjennom dokumentene og lager et element for hvert av dem
+            for (let i = 0; i < dokumenter.length; i++) {
+                innleggListeElement(dokumenter[i]);
+            }
+    })
+    })
+
+    function slett() {
+        while (innleggSamlingEl.firstChild) {    //sletter tabellen//
+            innleggSamlingEl.removeChild(innleggSamlingEl.lastChild);
+        }
+    }
+
+    function sorterValgtKategori(){
+        let indexVerdi = sorterkategoriEl.selectedIndex
+        if (indexVerdi == 0){
+            alle()
+        }
+        if (indexVerdi == 1){
+            sortDyr()
+        }
+        if (indexVerdi == 2){
+            sortBy()
+        }
+        if (indexVerdi == 3){
+            sortSport()
+        }
+        if (indexVerdi == 4){
+            sortMat()
+        }
+        if (indexVerdi == 5){
+            sortNatur()
+        }
+        if (indexVerdi == 6){
+            sortTech()
+        }
+    }
+    function alle(){
+        db.collection("galleri").orderBy("navn").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function sortDyr(){
+        db.collection("galleri").where("kategori", "==", "Dyr").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function sortBy(){
+        db.collection("galleri").where("kategori", "==", "By").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function sortSport(){
+        db.collection("galleri").where("kategori", "==", "Sport").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function sortMat(){
+        db.collection("galleri").where("kategori", "==", "Mat").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function sortNatur(){
+        db.collection("galleri").where("kategori", "==", "Natur").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function sortTech(){
+        db.collection("galleri").where("kategori", "==", "Tech").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
 </script>
 <script>
     let cookieEl = document.querySelector("#cookies")

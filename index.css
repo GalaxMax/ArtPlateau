@@ -12,15 +12,12 @@ body, html {
     border-width: 4px;
 }
 
-#cookies{
-    z-index:2;
-    background-size: cover;
-    position: absolute;
-    text-align: center;
-    vertical-align: middle;
-    margin: 0;
-    width: 100%;
-    height: 1400px;
+.utforming{
+    background-color: #BDF24B;
+    margin: 12px;
+    padding: 13px;
+    border-style: double;
+    border-width: 4px;
 }
 
 .textbox {
@@ -30,6 +27,17 @@ body, html {
     padding: 13px;
     border-style: double;
     border-width: 4px;
+}
+
+#cookies{
+    z-index:2;
+    background-size: cover;
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    width: 100%;
+    height: 1400px;
 }
 
 #cookieAksepter {
@@ -288,4 +296,17 @@ li a:hover:not(.active) {
 }
 .active {
     background-color: #804BF2;
+}
+table {
+    width: 100%;
+}
+th, td{
+    border: 1px solid black;
+    padding: 10px;
+}
+thead {
+    background-color: aquamarine;
+}
+tbody{
+    background-color: #C5EBFA;
 }
