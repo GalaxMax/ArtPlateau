@@ -1,5 +1,5 @@
 body, html {
-    height: 100%;
+    height: auto;
     margin: 0;
     background-color: white;
     font-size: 20px;
@@ -14,6 +14,16 @@ body, html {
 
 .utforming{
     background-color: #BDF24B;
+    margin: 12px;
+    padding: 13px;
+    border-style: double;
+    border-width: 4px;
+}
+
+.visKode{
+    background-color: darkgray;
+    font-style: italic;
+    font-family: "Georgia", serif;
     margin: 12px;
     padding: 13px;
     border-style: double;
@@ -248,7 +258,7 @@ select {
 
 .banner {       /*header og tittel*/
     background-image: url("bilder/artsy.jpg");
-    height: 25%;
+    height: 200px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

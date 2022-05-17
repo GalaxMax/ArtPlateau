@@ -169,7 +169,7 @@
     db.collection("galleri").get().then((snapshot) => {   //henter dokumenter//
         let dokumenter = snapshot.docs;
 
-        for (let i = 0; i < dokumenter.length; i++) {   //gjør vært dokument til tabell rad//
+        for (let i = 0; i < dokumenter.length; i++) {   //gjør vært dokument til et innlegg//
             innleggListeElement(dokumenter[i]);
         }
     });
