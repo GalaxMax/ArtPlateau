@@ -25,37 +25,60 @@
     <li class="meny"><a href="planDesign.html">Utforming</a></li>
     <li class="meny"><a href="planDesign.html">Algoritmer</a></li>
     <li class="meny"><a href="planDesign.html">Sjekkliste</a></li>
-    <li class="meny"><a class="active" href="webserver.html">Webserver</a></li>
-    <li class="meny"><a class="active" href="webserver.html">Cookies</a></li>
-    <li class="meny"><a class="active" href="webserver.html">Webutvikling</a></li>
+    <li class="meny"><a class="active" href="#webserver">Webserver</a></li>
+    <li class="meny"><a class="active" href="#cookieNettside">Cookies</a></li>
+    <li class="meny"><a class="active" href="#webutvikling">Webutvikling</a></li>
     <li class="meny"><a href="vurdering.html">Ukraina Krigen</a></li>
 </ul>
 
-
-<div class="hoved">
-<h1>Webserver</h1>
-    <p>Det å starte og kunne se en nettside er ikke så vanskelig i 2022, men i bakgrunnen er det mye som foregår.
-    Du kan velge hvilke programvare du vil bruke, alle nye operativsystemer kan brukes, og all maskinvare fra nyere
-    tid har en høy nok standard til å brukes. Her kan du få se hva jeg brukte for å lage denne nettsiden:</p><br>
-    <ul>
-        <li>Programvare: Apache</li>
-    </ul>
-<p>Webserver programvaren er det som sender nettsiden til tjenere.</p>
-    <ul>
-        <li>Operativsystem: Linux </li>
-    </ul>
-<p>Jeg har brukt Windows 10 som operativsystemet mitt. Noen andre populære er Windows 8, Linux og Mac OS. En
-    som nylig har kommet ut som flere oppdaterer til, er Windows 11. Jobben til operativsystemet er den viktigste av
-all programvare på pcen. Den styrer både maskinvare og programvare selv, og den fremstiller en brukervennlig
-    interface for å styre pcen.
-</p>
-    <a id="linkCookies"></a>
-    <ul>
-        <li>Maskinvare: </li>
-    </ul>
-
+<a id="webserver"></a>
+<div class="utforming">
+    <h1>Webserver</h1>
+        <p>Dette er en forklaring på hva en webserver er:</p>
+        <ul>
+            <li>Programvare</li>
+        </ul>
+    <p>Programvaren er driveren til maskinvaren. Tilgangen til forskjellige programvarer kommer an på hvilket operativsystem
+        som blir brukt. Bruker du en server med Windows OS, må du bruke Windows IIS programvare.</p>
+        <ul>
+            <li>Operativsystem</li>
+        </ul>
+    <p>Operativsystemet binder brukeren og maskinvaren sammen. Operativsystemet styrer også hva slags programvare kan styre
+    maskinvaren. For eksempel så kan en server med Unix OS bli styrt med programvarer som Apache.</p>
+        <ul>
+            <li>Maskinvare</li>
+        </ul>
+    <p>Maskinvaren bør være passende til det serveren skal brukes til. Dersom det skal brukes mellom brukeren og en liten
+    gruppe, så kan det være nok med bare en PC. Skal maskinvaren brukes av mange besøkere (F.eks. en bedrift), så er det
+    nødvendig med en større server.</p>
+        <ul>
+            <li>Nettverk</li>
+        </ul>
+    <p>Nettsiden blir lastet opp og beskyttet ved hjelp av en firewall. Firewalls passer på at det ikke kommer traffikk
+        inn på nettsiden som ikke er tillat. Domenenavn er lagret i DNS servere. Når en klient søker etter et domeneadresse
+        vil DNS serveren gi en IP tilbake. Da vil klienten spørre serveren med den IP-adressen etter HTTP adressen til nettsiden.
+        HTTPS er en sikrere måte enn HTTP, fordi den blir kryptert før den er sendt til klienten.</p>
+        <ul>
+            <li>Portnummer</li>
+        </ul>
+    <p>De fleste nettsider har portnummer 80 eller 443. Standard port nummer er 80, og kan summeres som en nettside med HTTP.
+    Nettsider med portnummer 443 betyr at de bruker HTTPS. Nettsider med koblet databaser har egne portnummere etter hvilken
+    tjener blir brukt. Et eksempel på en SQL database bruker som standard 1433, dette er Microsoft sin databaser. Det samme
+    foregår med NoSQL databaser.</p>
 </div>
 
+
+<a id="cookieNettside"></a>
+<div class="hoved">
+    <h1>Cookies</h1>
+    <p>
+        Cookies er informasjonskapsler. De lar brukeren lagre data på nettleseren sin. Brukeren må etter Datatilsynet
+        godta lagringen av personlig informasjon. Denne informasjonen kan lagre handlekurven din for senere handel, lagre
+        innloggingskriterier, eller hva brukeren har besøkt.
+    </p>
+</div>
+
+<a id="webutvikling"></a>
 <div class="textbox">
     <div>    <h2>Webutviklingprosjekt</h2>
         <p>Jeg synes en avtale som går ut på webutvikling bør være detaljert og planlagt, men samtidig bør det være mulig å
