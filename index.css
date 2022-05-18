@@ -95,11 +95,11 @@ body, html {
 .galleriPlass{
     display: flex;
 }
-.kategoriMeny {
-    width: 200px;
+.sorteringMeny {
+    width: 160px;
     height: 30px;
 }
-.kategoriMenyValg{
+.menyValg{
     text-align: center;
 }
 .lastOpp {
@@ -113,7 +113,7 @@ body, html {
     font-size: 16px;
     cursor: pointer;
     float: right;
-    bottom: 35px;
+    bottom: 40px;
 
 }
 .lastOpp:hover{

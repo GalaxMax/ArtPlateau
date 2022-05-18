@@ -62,16 +62,29 @@
 
     <div class="sort">
         <label for="sorterKategori">Sorter etter kategori</label>
-        <select class="kategoriMeny" id="sorterKategori">
-            <option class="kategoriMenyValg">Alle</option>
-            <option class="kategoriMenyValg">Dyr</option>
-            <option class="kategoriMenyValg">By</option>
-            <option class="kategoriMenyValg">Sport</option>
-            <option class="kategoriMenyValg">Mat</option>
-            <option class="kategoriMenyValg">Natur</option>
-            <option class="kategoriMenyValg">Tech</option>
+        <select class="sorteringMeny" id="sorterKategori">
+            <option class="menyValg">Alle</option>
+            <option class="menyValg">Dyr</option>
+            <option class="menyValg">By</option>
+            <option class="menyValg">Sport</option>
+            <option class="menyValg">Mat</option>
+            <option class="menyValg">Natur</option>
+            <option class="menyValg">Tech</option>
         </select>
-        <button class="lastOpp" id="sorter">Sorter Innlegg</button>
+        <button class="lastOpp" id="sorterKnappKategori">Sorter kategori</button>
+        <label for="sorterDato">Sorter etter dato</label>
+        <select class="sorteringMeny" id="sorterDato">
+            <option class="menyValg">---</option>
+            <option class="menyValg">Nylig</option>
+            <option class="menyValg">Eldst</option>
+        </select>
+        <button class="lastOpp" id="sorterKnappDato">Sorter etter dato</button>
+        <label for="sorterNavn">Sorter etter dato</label>
+        <select class="sorteringMeny" id="sorterNavn">
+            <option class="menyValg">Alfabetisk</option>
+            <option class="menyValg">Motsatt alfabetisk</option>
+        </select>
+        <button class="lastOpp" id="sorterKnappNavn">Sorter etter navn</button>
     </div>
 </div>
 
@@ -101,8 +114,12 @@
     let tagsEl = document.querySelector("#tags");
     let imgURLEl = document.querySelector("#imgURL");
     let buttonEl = document.querySelector("#lagre");
-    let sorterKnappEl = document.querySelector("#sorter");
-    let sorterkategoriEl = document.querySelector("#sorterKategori");
+    let sorterKnappKategoriEl = document.querySelector("#sorterKnappKategori");
+    let sorterKnappDatoEl = document.querySelector("#sorterKnappDato");
+    let sorterKnappNavnEl = document.querySelector("#sorterKnappNavn");
+    let sorterKategoriEl = document.querySelector("#sorterKategori");
+    let sorterDatoEl = document.querySelector("#sorterDato");
+    let sorterNavnEl = document.querySelector("#sorterNavn")
     let innleggSamlingEl = document.querySelector('#innleggSamling');
 
     let d = new Date();
@@ -124,9 +141,9 @@
     }
 
     buttonEl.addEventListener("click", lastOppBilde) //knapp for å utføre funksjon//
-    sorterKnappEl.addEventListener("click", slett)
-    sorterKnappEl.addEventListener("click", sorterValgtKategori)
-
+    sorterKnappKategoriEl.addEventListener("click", sorterValgtKategori)
+    sorterKnappDatoEl.addEventListener("click", sorterValgtDato)
+    sorterKnappNavnEl.addEventListener("click", sorterNavn)
 
     function innleggListeElement(dokument) {       //viser data//
 
@@ -138,11 +155,14 @@
         let beskrivelseOgTagsEl = document.createElement("div")
         let tagsEl = document.createElement("div")
         let beskrivelseEl = document.createElement('p')
+        let datoEl = document.createElement('p')
 
         navnEl.innerHTML = "Av: " + dokument.data().navn
         kategoriEl.innerHTML = dokument.data().kategori
         tagsEl.innerHTML = dokument.data().tags
         beskrivelseEl.innerHTML = dokument.data().beskrivelse
+        datoEl.innerHTML = 'Lastet opp: ' + dokument.data().dag + '/' + dokument.data().maaned + '/' +
+            dokument.data().aar
         srcEl = dokument.data().imgURL
 
         innleggEl.classList.add('innlegg');
@@ -151,6 +171,7 @@
         imgEl.classList.add('bilde');
         kategoriEl.classList.add('kategori');
         beskrivelseOgTagsEl.classList.add('beskrivelseOgTags');
+        datoEl.classList.add('beskrivelseOgTags');
         tagsEl.classList.add('tags');
 
         imgEl.src = srcEl
@@ -162,6 +183,7 @@
         innleggEl.appendChild(fotoEl);
         innleggEl.appendChild(kategoriEl);
         innleggEl.appendChild(beskrivelseOgTagsEl);
+        innleggEl.appendChild(datoEl);
 
         innleggSamlingEl.appendChild(innleggEl);
     }
@@ -174,7 +196,7 @@
         }
     });
 
-    db.collection("galleri").onSnapshot(snapshot => {
+    db.collection("galleri").onSnapshot(snapshot => {   //oppdaterer nettsiden når en endring skjer//
         db.collection("galleri").orderBy("navn").get().then((snapshot) => {
             // Henter ut dokumentene
             let dokumenter = snapshot.docs;
@@ -196,7 +218,8 @@
     }
 
     function sorterValgtKategori(){
-        let indexVerdi = sorterkategoriEl.selectedIndex
+        slett()
+        let indexVerdi = sorterKategoriEl.selectedIndex
         if (indexVerdi == 0){
             alle()
         }
@@ -282,6 +305,68 @@
     function sortTech(){
         db.collection("galleri").where("kategori", "==", "Tech").get().then((snapshot) => {
             //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+
+    function sorterValgtDato(){
+        slett()
+        let indexVerdi = sorterDatoEl.selectedIndex
+        if (indexVerdi == 0){
+        }
+        if (indexVerdi == 1){
+            nylig()
+        }
+        if (indexVerdi == 2){
+            eldst()
+        }
+    }
+    function nylig(){
+        db.collection("galleri").orderBy("aar", "desc").orderBy("maaned", "desc").orderBy("dag", "desc").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function eldst(){
+        db.collection("galleri").orderBy("aar", "asc").orderBy("maaned", "asc").orderBy("dag", "asc").get().then((snapshot) => {
+            //henter data fra dokumenter der parti inneholder Ap//
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+
+    function sorterNavn(){
+        slett()
+        let indexVerdi = sorterNavnEl.selectedIndex
+        if (indexVerdi == 0){
+            sorterAlfabetisk()
+        }
+        if (indexVerdi == 1) {
+            sorterIkkeAlfabetisk()
+        }
+    }
+    function sorterAlfabetisk(){
+        db.collection("galleri").orderBy("navn", "asc").get().then((snapshot) => {
+            let dokumenter = snapshot.docs;
+
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
+    }
+    function sorterIkkeAlfabetisk(){
+        db.collection("galleri").orderBy("navn", "desc").get().then((snapshot) => {
             let dokumenter = snapshot.docs;
 
             for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
