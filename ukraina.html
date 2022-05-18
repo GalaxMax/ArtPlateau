@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <title>Ukraina Krigen</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+<div class="banner">    <!--header for alle nettsider-->
+    <div class="header">
+        <h1>The Art Plateau</h1>
+    </div>
+</div>
+
+<div id="cookies" style="background-color: white">
+    <h1><br><br>Denne nettsiden bruker cookies.</h1>
+    <p>Ved å trykke på "Aksepter" forstår du at denne nettsiden lagrer personlig data for en bedre brukeropplevelse.</p>
+    <button id="cookieAksepter">Aksepter</button>
+</div>
+
+<ul class="navigering">    <!--navigering meny for alle sider-->
+    <li class="meny"><a href="index.html">Home</a></li>
+    <li class="meny"><a href="gallery.html">Galleri</a></li>
+    <li class="meny"><a href="planDesign.html">Plan</a></li>
+    <li class="meny"><a href="planDesign.html">Utforming</a></li>
+    <li class="meny"><a href="planDesign.html">Algoritmer</a></li>
+    <li class="meny"><a href="planDesign.html">Sjekkliste</a></li>
+    <li class="meny"><a href="webserver.html">Webserver</a></li>
+    <li class="meny"><a href="webserver.html">Cookies</a></li>
+    <li class="meny"><a href="webserver.html">Webutvikling</a></li>
+    <li class="meny"><a href="ukraina.html">Ukraina Krigen</a></li>
+</ul>
+
+<div class="utforming">
+    <h1>Ukraina Krigen</h1>
+    <p>
+        Russland startet en invasjon mot Ukraina den 24 februar, 2022. Modige soldater sloss tilbake mot russerne
+        mens Europa tar inn millioner av ukrainske flyktninger, men krigen er ikke bare på bakken. I dagens alder
+        er de fleste barn og voksne koblet på nettet, og det er her krigen fortsetter utenfor landegrensene.
+        Filmsnutter av russiske aktivister som sprer falsk informasjon og propaganda finnes over hele Tik Tok
+        og sosiale medier. Internett og IT generelt har blitt en ny type slagmark for kriger. Dette har også
+        konsekvenser for oss individer. Det er vanskelig å finne troverdig informasjon fordi begge sider av krigen
+        lyver om tilstanden de er i. Hackere og trolls fra Russland og vesten har vært spesielt aktiv under
+        invasjonen i Ukraina. Grunnen til økningen kan være fordi dette er en krig der informasjon er viktig,
+        derfor er det spesielt viktig å være forsiktig online. Krigen mellom Russland og Ukraina har også ødelagt
+        det internasjonale samarbeidet Russland hadde med vesten. Dette vil føre til en tregere progresjon
+        innenfor utviklingen i teknologi. Den ukrainske presidenten Volodymyr Zelenskyy har vært aktiv og åpen om
+        situasjonen til landet. Han har holdt taler og vært i kontakt med flere store makter i verden. Gjennom
+        internettet har Zelensky samlet et sterkt rykte med mange følgere som har hjulpet Ukraina. Hans suksess
+        viser hvor viktig det er for en leder å bruke nettet hyppig. Eksemplet vi ser her kan ha konsekvenser på
+        samfunnet våres i flere år. IT i krig er noe nytt vi ser i verden, og det vil utvikle seg mer og mer
+        ettersom konflikten fortsetter. Vi ser allerede at dette påvirker også oss enkeltpersoner, ikke bare
+        landene i krig. Derfor får vi håpe invasjonen gir seg snarest mulig.
+    </p>
+</div>
+
+<script>
+
+    let cookieEl = document.querySelector("#cookies")
+    let cookieButtonEl = document.querySelector("#cookieAksepter");
+
+    cookieButtonEl.addEventListener("click", cookie)
+
+    if (localStorage.cookies) {
+        cookieEl.innerHTML = "";
+        document.getElementById('cookies').style.backgroundColor = "";
+    }
+    else {
+    }
+
+    function cookie() {
+        localStorage.cookies = 1;
+        location.reload()
+    }
+
+</script>
+</body>
+</html>

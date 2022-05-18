@@ -2,7 +2,7 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <title>The Art Plateau</title>
+    <title>Plan og Design</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
     <li class="meny"><a href="webserver.html">Webserver</a></li>
     <li class="meny"><a href="webserver.html">Cookies</a></li>
     <li class="meny"><a href="webserver.html">Webutvikling</a></li>
-    <li class="meny"><a href="vurdering.html">Ukraina Krigen</a></li>
+    <li class="meny"><a href="ukraina.html">Ukraina Krigen</a></li>
 </ul>
 <a id="plan"></a>
 <div class="hoved">
@@ -222,16 +222,37 @@
             // Henter ut dokumentene <br>
             let dokumenter = snapshot.docs; <br>
             <br>
-            // Tømmer listeelementet (div-elementet der huskelisten lages) <br>
+            // Tømmer innleggfeltet <br>
         innleggSamlingEl.innerHTML = ""; <br>
         <br>
-        // Går gjennom dokumentene og lager et element for hvert av dem <br>
+        // Går gjennom dokumentene og lager et element for alle innlegg med en type kategori<br>
         for (let i = 0; i < dokumenter.length; i++) { <br>
         innleggListeElement(dokumenter[i]); <br>
         } <br>
         }) <br>
         }) <br>
         </p>
+    </div>
+    <br>
+    <p>
+        Kode for å slette innlegg som var lastet opp fra en enhet:
+    </p>
+    <div class="visKode">
+        if (localStorage.ID == dokument.data().ID) {<br>
+        let slettEl = document.createElement('button')<br>
+        slettEl.innerHTML = 'Slett innlegg'<br>
+        slettEl.classList.add('slettKnapp')<br>
+        <br>
+        slettEl.addEventListener("click", slettBilde)<br>
+        <br>
+        function slettBilde(){<br>
+        while (innleggEl.firstChild) {    //sletter Innleggene//<br>
+        innleggEl.removeChild(innleggEl.lastChild);<br>
+        }<br>
+        }<br>
+        innleggEl.appendChild(slettEl);<br>
+        }<br>
+        }<br>
     </div>
     <br>
     <p>
@@ -331,21 +352,21 @@
     </div>
 </div>
 <script>
-let cookieEl = document.querySelector("#cookies")
-let cookieButtonEl = document.querySelector("#cookieAksepter");
+    let cookieEl = document.querySelector("#cookies")
+    let cookieButtonEl = document.querySelector("#cookieAksepter");
 
-cookieButtonEl.addEventListener("click", cookie);
+    cookieButtonEl.addEventListener("click", cookie)
 
-if (localStorage.cookies) {
-cookieEl.innerHTML = "";
-document.getElementById('cookies').style.backgroundColor = "";
-}
+    if (localStorage.cookies) {
+        cookieEl.innerHTML = "";
+        document.getElementById('cookies').style.backgroundColor = "";
+    }
 
-function cookie() {
-localStorage.cookies = 1;
-location.reload()
-
-}
+    function cookie() {
+        localStorage.cookies = 1;
+        localStorage.ID = Math.random()
+        location.reload()
+    }
 </script>
 </body>
 </html>

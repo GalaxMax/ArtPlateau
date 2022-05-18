@@ -28,7 +28,7 @@
     <li class="meny"><a class="active" href="#webserver">Webserver</a></li>
     <li class="meny"><a class="active" href="#cookieNettside">Cookies</a></li>
     <li class="meny"><a class="active" href="#webutvikling">Webutvikling</a></li>
-    <li class="meny"><a href="vurdering.html">Ukraina Krigen</a></li>
+    <li class="meny"><a href="ukraina.html">Ukraina Krigen</a></li>
 </ul>
 
 <a id="webserver"></a>
@@ -95,7 +95,6 @@
     </div>
 </div>
 <script>
-
     let cookieEl = document.querySelector("#cookies")
     let cookieButtonEl = document.querySelector("#cookieAksepter");
 
@@ -105,14 +104,12 @@
         cookieEl.innerHTML = "";
         document.getElementById('cookies').style.backgroundColor = "";
     }
-    else {
-    }
 
     function cookie() {
         localStorage.cookies = 1;
+        localStorage.ID = Math.random()
         location.reload()
     }
-
 </script>
 </body>
 </html>

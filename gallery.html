@@ -2,7 +2,7 @@
 <html lang="no">
 <head>
     <meta charset="UTF-8">
-    <title>The Art Plateau</title>
+    <title>Bilde Galleri</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -28,72 +28,91 @@
     <li class="meny"><a href="webserver.html">Webserver</a></li>
     <li class="meny"><a href="webserver.html">Cookies</a></li>
     <li class="meny"><a href="webserver.html">Webutvikling</a></li>
-    <li class="meny"><a href="vurdering.html">Ukraina Krigen</a></li>
+    <li class="meny"><a href="ukraina.html">Ukraina Krigen</a></li>
 </ul>
 
 <div class="galleriPlass">
-<div class="panels">
-    <div class="post">
-        <p><b>Her kan du legge til dine egne bilder!</b></p>
-        <label for="brukerNavn">Brukernavn</label>
-        <input type="text" id="brukerNavn">
+    <div class="panels">
+        <div class="post">
+            <p><b>Her kan du legge til dine egne bilder!</b></p>
+            <label for="brukerNavn">Brukernavn</label>
+            <input type="text" id="brukerNavn">
 
-        <label for="beskrivelse">Beskrivelse</label>
-        <textarea id="beskrivelse" rows="4" cols="40"></textarea>
+            <label for="beskrivelse">Beskrivelse</label>
+            <textarea id="beskrivelse" rows="4" cols="40"></textarea>
 
-        <label for="velgKategori">Velg en kategori</label>
-        <select class="kategoriMeny" id="velgKategori">
-            <option class="kategoriMenyValg">Dyr</option>
-            <option class="kategoriMenyValg">By</option>
-            <option class="kategoriMenyValg">Sport</option>
-            <option class="kategoriMenyValg">Mat</option>
-            <option class="kategoriMenyValg">Natur</option>
-            <option class="kategoriMenyValg">Tech</option>
-        </select>
+            <label for="velgKategori">Velg en kategori</label>
+            <select class="kategoriMeny" id="velgKategori">
+                <option class="kategoriMenyValg">Dyr</option>
+                <option class="kategoriMenyValg">By</option>
+                <option class="kategoriMenyValg">Sport</option>
+                <option class="kategoriMenyValg">Mat</option>
+                <option class="kategoriMenyValg">Natur</option>
+                <option class="kategoriMenyValg">Tech</option>
+            </select>
 
-        <label for="tags">Legg til en Tag</label>
-        <input type="text" id="tags">
+            <label for="tags">Legg til en Tag</label>
+            <input type="text" id="tags">
 
-        <label for="imgURL">Bilde URL</label>
-        <input type="text" id="imgURL">
+            <label for="imgUpload">Last opp bilde</label>
+            <input type="file" id="imgUpload">
 
-        <button class="lastOpp" id="lagre">Legg ut bilde</button>
+            <button class="lastOpp" id="lagre">Legg ut bilde</button>
+        </div>
+
+        <div class="sort">
+            <label for="sorterKategori">Sorter etter kategori</label>
+            <select class="sorteringMeny" id="sorterKategori">
+                <option class="menyValg">Alle</option>
+                <option class="menyValg">Dyr</option>
+                <option class="menyValg">By</option>
+                <option class="menyValg">Sport</option>
+                <option class="menyValg">Mat</option>
+                <option class="menyValg">Natur</option>
+                <option class="menyValg">Tech</option>
+            </select>
+            <button class="lastOpp" id="sorterKnappKategori">Sorter</button>
+            <label for="sorterDato">Sorter etter dato</label>
+            <select class="sorteringMeny" id="sorterDato">
+                <option class="menyValg">---</option>
+                <option class="menyValg">Nylig</option>
+                <option class="menyValg">Eldst</option>
+            </select>
+            <button class="lastOpp" id="sorterKnappDato">Sorter</button>
+            <label for="sorterNavn">Sorter etter navn</label>
+            <select class="sorteringMeny" id="sorterNavn">
+                <option class="menyValg">Alfabetisk</option>
+                <option class="menyValg">Motsatt alfabetisk</option>
+            </select>
+            <button class="lastOpp" id="sorterKnappNavn">Sorter</button>
+            <label for="tagging">Søk etter tags</label>
+            <input type="text" id="tagging">
+            <button class="lastOpp" id="taggingKnapp">Søk</button>
+        </div>
     </div>
 
-    <div class="sort">
-        <label for="sorterKategori">Sorter etter kategori</label>
-        <select class="sorteringMeny" id="sorterKategori">
-            <option class="menyValg">Alle</option>
-            <option class="menyValg">Dyr</option>
-            <option class="menyValg">By</option>
-            <option class="menyValg">Sport</option>
-            <option class="menyValg">Mat</option>
-            <option class="menyValg">Natur</option>
-            <option class="menyValg">Tech</option>
-        </select>
-        <button class="lastOpp" id="sorterKnappKategori">Sorter kategori</button>
-        <label for="sorterDato">Sorter etter dato</label>
-        <select class="sorteringMeny" id="sorterDato">
-            <option class="menyValg">---</option>
-            <option class="menyValg">Nylig</option>
-            <option class="menyValg">Eldst</option>
-        </select>
-        <button class="lastOpp" id="sorterKnappDato">Sorter etter dato</button>
-        <label for="sorterNavn">Sorter etter dato</label>
-        <select class="sorteringMeny" id="sorterNavn">
-            <option class="menyValg">Alfabetisk</option>
-            <option class="menyValg">Motsatt alfabetisk</option>
-        </select>
-        <button class="lastOpp" id="sorterKnappNavn">Sorter etter navn</button>
-    </div>
-</div>
-
-<div id="innleggSamling" class="innleggFelt"></div>
+    <div id="innleggSamling" class="innleggFelt"></div>
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<script>
+    let cookieEl = document.querySelector("#cookies")
+    let cookieButtonEl = document.querySelector("#cookieAksepter");
 
+    cookieButtonEl.addEventListener("click", cookie)
+
+    if (localStorage.cookies) {
+        cookieEl.innerHTML = "";
+        document.getElementById('cookies').style.backgroundColor = "";
+    }
+
+    function cookie() {
+        localStorage.cookies = 1;
+        localStorage.ID = Math.random()
+        location.reload()
+    }
+</script>
 <script>
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -107,19 +126,19 @@
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     let db = firebase.firestore();
-
+    console.log(localStorage.ID)
     let brukerNavnEl = document.querySelector("#brukerNavn");
     let beskrivelseEl = document.querySelector("#beskrivelse");
     let velgKategoriEl = document.querySelector("#velgKategori");
     let tagsEl = document.querySelector("#tags");
-    let imgURLEl = document.querySelector("#imgURL");
     let buttonEl = document.querySelector("#lagre");
     let sorterKnappKategoriEl = document.querySelector("#sorterKnappKategori");
     let sorterKnappDatoEl = document.querySelector("#sorterKnappDato");
     let sorterKnappNavnEl = document.querySelector("#sorterKnappNavn");
+    let sortertaggingknappEl = document.querySelector("#taggingKnapp");
     let sorterKategoriEl = document.querySelector("#sorterKategori");
     let sorterDatoEl = document.querySelector("#sorterDato");
-    let sorterNavnEl = document.querySelector("#sorterNavn")
+    let sorterNavnEl = document.querySelector("#sorterNavn");
     let innleggSamlingEl = document.querySelector('#innleggSamling');
 
     let d = new Date();
@@ -128,22 +147,34 @@
     let aarEl = d.getFullYear();
 
     function lastOppBilde() {   //legger til et nytt dokument i db med bruker input//
-        db.collection("galleri").add({
-            navn: brukerNavnEl.value,
-            beskrivelse: beskrivelseEl.value,
-            kategori: velgKategoriEl.value,
-            tags: tagsEl.value,
-            imgURL: imgURLEl.value,
-            dag: dagEl,
-            maaned: maanedEl,
-            aar: aarEl
+        let toBase64 = file => new Promise((resolve) => {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
         });
+
+        let uploadedFile = document.querySelector('#imgUpload').files[0];
+        toBase64(uploadedFile)
+            .then(res => {
+                db.collection("galleri").add({
+                    navn: brukerNavnEl.value,
+                    beskrivelse: beskrivelseEl.value,
+                    kategori: velgKategoriEl.value,
+                    tags: tagsEl.value,
+                    dag: dagEl,
+                    maaned: maanedEl,
+                    aar: aarEl,
+                    base64: res,
+                    ID: localStorage.ID
+                })
+            })
     }
 
     buttonEl.addEventListener("click", lastOppBilde) //knapp for å utføre funksjon//
     sorterKnappKategoriEl.addEventListener("click", sorterValgtKategori)
     sorterKnappDatoEl.addEventListener("click", sorterValgtDato)
     sorterKnappNavnEl.addEventListener("click", sorterNavn)
+    sortertaggingknappEl.addEventListener("click", search)
 
     function innleggListeElement(dokument) {       //viser data//
 
@@ -163,7 +194,7 @@
         beskrivelseEl.innerHTML = dokument.data().beskrivelse
         datoEl.innerHTML = 'Lastet opp: ' + dokument.data().dag + '/' + dokument.data().maaned + '/' +
             dokument.data().aar
-        srcEl = dokument.data().imgURL
+        srcEl = dokument.data().base64
 
         innleggEl.classList.add('innlegg');
         navnEl.classList.add('navn');
@@ -186,6 +217,21 @@
         innleggEl.appendChild(datoEl);
 
         innleggSamlingEl.appendChild(innleggEl);
+
+        if (localStorage.ID == dokument.data().ID) {
+            let slettEl = document.createElement('button')
+            slettEl.innerHTML = 'Slett innlegg'
+            slettEl.classList.add('slettKnapp')
+
+            slettEl.addEventListener("click", slettBilde)
+
+            function slettBilde(){
+                while (innleggEl.firstChild) {    //sletter Innleggene//
+                    innleggEl.removeChild(innleggEl.lastChild);
+                }
+            }
+            innleggEl.appendChild(slettEl);
+        }
     }
 
     db.collection("galleri").get().then((snapshot) => {   //henter dokumenter//
@@ -208,11 +254,11 @@
             for (let i = 0; i < dokumenter.length; i++) {
                 innleggListeElement(dokumenter[i]);
             }
-    })
+        })
     })
 
     function slett() {
-        while (innleggSamlingEl.firstChild) {    //sletter tabellen//
+        while (innleggSamlingEl.firstChild) {    //sletter Innleggene//
             innleggSamlingEl.removeChild(innleggSamlingEl.lastChild);
         }
     }
@@ -374,24 +420,19 @@
             }
         })
     }
-</script>
-<script>
-    let cookieEl = document.querySelector("#cookies")
-    let cookieButtonEl = document.querySelector("#cookieAksepter");
 
-    cookieButtonEl.addEventListener("click", cookie)
+    function search(){
+        slett()
+        let taggingValue = document.getElementById('tagging').value
+        db.collection("galleri").where("tags", "==", taggingValue).get().then((snapshot) => {
+            let dokumenter = snapshot.docs;
 
-    if (localStorage.cookies) {
-        cookieEl.innerHTML = "";
-        document.getElementById('cookies').style.backgroundColor = "";
-    }
-    else {
+            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+                innleggListeElement(dokumenter[i]);
+            }
+        })
     }
 
-    function cookie() {
-        localStorage.cookies = 1;
-        location.reload()
-    }
 </script>
 </body>
 </html>
