@@ -140,8 +140,8 @@ select {
     border-radius: 20px;
     width: auto;
     max-width: 550px;
-    height: auto;
-    min-height: 200px;
+    min-height: 550px;
+    max-height: 800px;
     font-family: Helvetica;
     background-color: aquamarine;
     margin: 35px;
@@ -212,7 +212,7 @@ select {
     border-radius: 15px;
     text-align: center;
     background-color: lightgrey;
-    margin: 15px;
+    margin: 30px;
     padding: 10px;
 }
 .slettKnapp {

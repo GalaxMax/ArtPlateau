@@ -10,13 +10,13 @@
     <div class="header">
         <h1>The Art Plateau</h1>
     </div>
-</div>
+</div> <!--banner for alle nettsider-->
 
 <div id="cookies" style="background-color: white">
     <h1><br><br>Denne nettsiden bruker cookies.</h1>
     <p>Ved å trykke på "Aksepter" forstår du at denne nettsiden lagrer personlig data for en bedre brukeropplevelse.</p>
     <button id="cookieAksepter">Aksepter</button>
-</div>
+</div> <!--Pop-up element for å akseptere cookies-->
 
 <ul class="navigering">    <!--navigering meny for alle sider-->
     <li class="meny"><a href="index.html">Home</a></li>
@@ -29,11 +29,11 @@
     <li class="meny"><a href="webserver.html">Cookies</a></li>
     <li class="meny"><a href="webserver.html">Webutvikling</a></li>
     <li class="meny"><a href="ukraina.html">Ukraina Krigen</a></li>
-</ul>
+</ul> <!--navigering meny for alle sider-->
 
 <div class="galleriPlass">
     <div class="panels">
-        <div class="post">
+        <div class="post">      <!--bruker input for å laste opp innlegg-->
             <p><b>Her kan du legge til dine egne bilder!</b></p>
             <label for="brukerNavn">Brukernavn</label>
             <input type="text" id="brukerNavn">
@@ -60,7 +60,7 @@
             <button class="lastOpp" id="lagre">Legg ut bilde</button>
         </div>
 
-        <div class="sort">
+        <div class="sort">      <!--bruker input for å sortere innlegg-->
             <label for="sorterKategori">Sorter etter kategori</label>
             <select class="sorteringMeny" id="sorterKategori">
                 <option class="menyValg">Alle</option>
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    <div id="innleggSamling" class="innleggFelt"></div>
+    <div id="innleggSamling" class="innleggFelt"></div> <!--div element for innleggene å ligge i-->
 </div>
 
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -112,9 +112,9 @@
         localStorage.ID = Math.random()
         location.reload()
     }
-</script>
+</script>  <!--Script for cookie pop-up-->
 <script>
-    // Your web app's Firebase configuration
+    //kobler til firebase//
     const firebaseConfig = {
         apiKey: "AIzaSyDpLtSVKfz3rcmcqX3-y9Gg-zIcHc0P8Ng",
         authDomain: "the-art-plateau.firebaseapp.com",
@@ -123,11 +123,11 @@
         messagingSenderId: "684643482427",
         appId: "1:684643482427:web:715b478b5ae4a170e1d51e"
     };
-    // Initialize Firebase
+    //starter opp firebase og lager en variabel//
     firebase.initializeApp(firebaseConfig);
     let db = firebase.firestore();
-    console.log(localStorage.ID)
-    let brukerNavnEl = document.querySelector("#brukerNavn");
+
+    let brukerNavnEl = document.querySelector("#brukerNavn");   //Henter elementer//
     let beskrivelseEl = document.querySelector("#beskrivelse");
     let velgKategoriEl = document.querySelector("#velgKategori");
     let tagsEl = document.querySelector("#tags");
@@ -141,22 +141,28 @@
     let sorterNavnEl = document.querySelector("#sorterNavn");
     let innleggSamlingEl = document.querySelector('#innleggSamling');
 
-    let d = new Date();
+    let d = new Date();     //henter dato som variabel//
     let dagEl = d.getDate();
     let maanedEl = d.getMonth();
     let aarEl = d.getFullYear();
 
-    function lastOppBilde() {   //legger til et nytt dokument i db med bruker input//
-        let toBase64 = file => new Promise((resolve) => {
+    buttonEl.addEventListener("click", lastOppBilde) //lager knapper for funksjoner//
+    sorterKnappKategoriEl.addEventListener("click", sorterValgtKategori)
+    sorterKnappDatoEl.addEventListener("click", sorterValgtDato)
+    sorterKnappNavnEl.addEventListener("click", sorterNavn)
+    sortertaggingknappEl.addEventListener("click", search)
+
+    function lastOppBilde() {
+        let toBase64 = file => new Promise((resolve) => {   //leser valgt fil//
             let reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
+            reader.readAsDataURL(file);                     //gjør filen om til base64//
+            reader.onload = () => resolve(reader.result);   //når den er ferdig gir den resultat som res//
         });
 
         let uploadedFile = document.querySelector('#imgUpload').files[0];
         toBase64(uploadedFile)
-            .then(res => {
-                db.collection("galleri").add({
+            .then(res => {  //vis konvertering lykkes, gjør funksjonen//
+                db.collection("galleri").add({ //legger til et nytt dokument i db//
                     navn: brukerNavnEl.value,
                     beskrivelse: beskrivelseEl.value,
                     kategori: velgKategoriEl.value,
@@ -170,13 +176,7 @@
             })
     }
 
-    buttonEl.addEventListener("click", lastOppBilde) //knapp for å utføre funksjon//
-    sorterKnappKategoriEl.addEventListener("click", sorterValgtKategori)
-    sorterKnappDatoEl.addEventListener("click", sorterValgtDato)
-    sorterKnappNavnEl.addEventListener("click", sorterNavn)
-    sortertaggingknappEl.addEventListener("click", search)
-
-    function innleggListeElement(dokument) {       //viser data//
+    function innleggListeElement(dokument) {       //viser innlegg//
 
         let innleggEl = document.createElement("div");    //lager elementer//
         let navnEl = document.createElement("div");
@@ -188,14 +188,13 @@
         let beskrivelseEl = document.createElement('p')
         let datoEl = document.createElement('p')
 
+        let srcEl = dokument.data().base64      //gir verdier//
         navnEl.innerHTML = "Av: " + dokument.data().navn
         kategoriEl.innerHTML = dokument.data().kategori
         tagsEl.innerHTML = dokument.data().tags
         beskrivelseEl.innerHTML = dokument.data().beskrivelse
         datoEl.innerHTML = 'Lastet opp: ' + dokument.data().dag + '/' + dokument.data().maaned + '/' +
             dokument.data().aar
-        srcEl = dokument.data().base64
-
         innleggEl.classList.add('innlegg');
         navnEl.classList.add('navn');
         fotoEl.classList.add('foto');
@@ -207,7 +206,7 @@
 
         imgEl.src = srcEl
 
-        fotoEl.appendChild(imgEl)
+        fotoEl.appendChild(imgEl)       //syr sammen innlegget//
         beskrivelseOgTagsEl.appendChild(tagsEl);
         beskrivelseOgTagsEl.appendChild(beskrivelseEl);
         innleggEl.appendChild(navnEl);
@@ -216,9 +215,9 @@
         innleggEl.appendChild(beskrivelseOgTagsEl);
         innleggEl.appendChild(datoEl);
 
-        innleggSamlingEl.appendChild(innleggEl);
+        innleggSamlingEl.appendChild(innleggEl);    //legger innlegg i innleggfeltet//
 
-        if (localStorage.ID == dokument.data().ID) {
+        if (localStorage.ID == dokument.data().ID) { //legger til slett knapp vis brukeren lastet opp bildet//
             let slettEl = document.createElement('button')
             slettEl.innerHTML = 'Slett innlegg'
             slettEl.classList.add('slettKnapp')
@@ -226,7 +225,7 @@
             slettEl.addEventListener("click", slettBilde)
 
             function slettBilde(){
-                while (innleggEl.firstChild) {    //sletter Innleggene//
+                while (innleggEl.firstChild) {    //sletter innlegget//
                     innleggEl.removeChild(innleggEl.lastChild);
                 }
             }
@@ -244,13 +243,10 @@
 
     db.collection("galleri").onSnapshot(snapshot => {   //oppdaterer nettsiden når en endring skjer//
         db.collection("galleri").orderBy("navn").get().then((snapshot) => {
-            // Henter ut dokumentene
             let dokumenter = snapshot.docs;
 
-            // Tømmer listeelementet (<div>-elementet der huskelisten lages)
             innleggSamlingEl.innerHTML = "";
 
-            // Går gjennom dokumentene og lager et element for hvert av dem
             for (let i = 0; i < dokumenter.length; i++) {
                 innleggListeElement(dokumenter[i]);
             }
@@ -263,7 +259,9 @@
         }
     }
 
-    function sorterValgtKategori(){
+    //-------------- Sortering av innlegg --------------//
+
+    function sorterValgtKategori(){     //sletter innleggene og kjører valgt funksjon//
         slett()
         let indexVerdi = sorterKategoriEl.selectedIndex
         if (indexVerdi == 0){
@@ -290,20 +288,18 @@
     }
     function alle(){
         db.collection("galleri").orderBy("navn").get().then((snapshot) => {
-            //henter data fra dokumenter der parti inneholder Ap//
             let dokumenter = snapshot.docs;
 
-            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+            for (let i = 0; i < dokumenter.length; i++) {  //Laster alle innlegg//
                 innleggListeElement(dokumenter[i]);
             }
         })
     }
     function sortDyr(){
         db.collection("galleri").where("kategori", "==", "Dyr").get().then((snapshot) => {
-            //henter data fra dokumenter der parti inneholder Ap//
             let dokumenter = snapshot.docs;
 
-            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+            for (let i = 0; i < dokumenter.length; i++) {   //laster innlegg i kategorien Dyr//
                 innleggListeElement(dokumenter[i]);
             }
         })
@@ -373,20 +369,18 @@
     }
     function nylig(){
         db.collection("galleri").orderBy("aar", "desc").orderBy("maaned", "desc").orderBy("dag", "desc").get().then((snapshot) => {
-            //henter data fra dokumenter der parti inneholder Ap//
             let dokumenter = snapshot.docs;
-
-            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+            //viser alle innlegg i rekkefølge nylig til eldst//
+            for (let i = 0; i < dokumenter.length; i++) {
                 innleggListeElement(dokumenter[i]);
             }
         })
     }
     function eldst(){
         db.collection("galleri").orderBy("aar", "asc").orderBy("maaned", "asc").orderBy("dag", "asc").get().then((snapshot) => {
-            //henter data fra dokumenter der parti inneholder Ap//
             let dokumenter = snapshot.docs;
-
-            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+            //viser alle innlegg i rekkefølge eldst til nylig//
+            for (let i = 0; i < dokumenter.length; i++) {
                 innleggListeElement(dokumenter[i]);
             }
         })
@@ -405,8 +399,8 @@
     function sorterAlfabetisk(){
         db.collection("galleri").orderBy("navn", "asc").get().then((snapshot) => {
             let dokumenter = snapshot.docs;
-
-            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+            //viser alle innlegg i rekkefølge A til Å//
+            for (let i = 0; i < dokumenter.length; i++) {
                 innleggListeElement(dokumenter[i]);
             }
         })
@@ -414,8 +408,8 @@
     function sorterIkkeAlfabetisk(){
         db.collection("galleri").orderBy("navn", "desc").get().then((snapshot) => {
             let dokumenter = snapshot.docs;
-
-            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+            //viser alle innlegg i rekkefølge Å til A//
+            for (let i = 0; i < dokumenter.length; i++) {
                 innleggListeElement(dokumenter[i]);
             }
         })
@@ -423,16 +417,15 @@
 
     function search(){
         slett()
-        let taggingValue = document.getElementById('tagging').value
+        let taggingValue = document.getElementById('tagging').value     //leser bruker input//
         db.collection("galleri").where("tags", "==", taggingValue).get().then((snapshot) => {
             let dokumenter = snapshot.docs;
-
-            for (let i = 0; i < dokumenter.length; i++) {   //lager ny tabell//
+            //viser alle innlegg med taggen brukeren skriver//
+            for (let i = 0; i < dokumenter.length; i++) {
                 innleggListeElement(dokumenter[i]);
             }
         })
     }
-
 </script>
 </body>
 </html>

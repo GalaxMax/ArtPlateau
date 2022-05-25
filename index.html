@@ -6,15 +6,20 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div class="banner">    <!--header for alle nettsider-->
+<div class="banner">    <!--banner for alle nettsider-->
     <div class="header">
         <h1>The Art Plateau</h1>
     </div>
 </div>
 
-<div id="cookies" style="background-color: white">
-    <h1><br><br>Denne nettsiden bruker cookies.</h1>
-    <p>Ved å trykke på "Aksepter" forstår du at denne nettsiden lagrer personlig data for en bedre brukeropplevelse.</p>
+<div id="cookies" style="background-color: white"> <!--Pop-up element for å akseptere cookies-->
+    <h1>
+        <br><br>Denne nettsiden bruker cookies.
+    </h1>
+    <p>
+        Ved å trykke på "Aksepter" forstår du at denne nettsiden lagrer personlig data for en
+        bedre brukeropplevelse.
+    </p>
     <button id="cookieAksepter">Aksepter</button>
 </div>
 
@@ -45,16 +50,22 @@
         oss å gjøre. Fanen heter <b>Ukraina Krigen</b>.</p> <br> <h3>Tips!</h3><p>Dobbelttrykk
     navigeringsbaren for å hoppe til overskriften du vil til</p>
 </div>
+
 <div class="textbox">
-    <div>    <h2>Galleriet</h2>
+    <div>
+        <h2>Galleriet</h2>
         <p>I galleriet kan du se hva folk rundt hele verden laster opp! Du har selv tilgang til å laste opp dine egne
             bilder. Å laste opp et bilde er enkelt og raskt, og du kan sette på tags og bruke katagorier slik at alle kan
             finne frem ditt bilde.</p>
     </div>
+
     <div class="example">
-        <div class="navn"><p>Av: Max Oliver</p></div>
-        <div class="foto"><img class="bilde" src="bilder/skisser.jpg"
-        alt="Tidlig planer på hvordan forsiden skulle se ut, laget av meg">
+        <div class="navn">
+            <p>Av: Max Oliver</p>
+        </div>
+        <div class="foto">
+            <img class="bilde" src="bilder/skisser.jpg"
+                 alt="Tidlig planer på hvordan forsiden skulle se ut, laget av meg">
         </div>
         <div class="kategoriEksempel">
             <p><b>Skole</b></p>
@@ -69,18 +80,18 @@
     </div>
 </div>
 </body>
-<script>
-    let cookieEl = document.querySelector("#cookies")
+<script>  <!--Script for cookie pop-up-->
+    let cookieEl = document.querySelector("#cookies")               //Henter elementer//
     let cookieButtonEl = document.querySelector("#cookieAksepter");
 
-    cookieButtonEl.addEventListener("click", cookie)
+    cookieButtonEl.addEventListener("click", cookie)                //Kobler knapp//
 
-    if (localStorage.cookies) {
+    if (localStorage.cookies) {                     //Fjerner pop-up dersom du har akseptert cookies//
         cookieEl.innerHTML = "";
         document.getElementById('cookies').style.backgroundColor = "";
     }
 
-    function cookie() {
+    function cookie() {                             //Gir verdier når du godtar cookies//
         localStorage.cookies = 1;
         localStorage.ID = Math.random()
         location.reload()
